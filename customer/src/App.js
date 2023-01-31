@@ -1,6 +1,7 @@
 import React,{Component} from "react"
 import axios from "axios"
 
+
 export default class App extends Component{
   constructor (props){
     super(props);
@@ -14,7 +15,7 @@ componentDidMount(){
 
 
   retrievePost(){
-    axios.get("http://localhost:8025/posts").then(res=>{
+    axios.get("http://localhost:8026/posts").then(res=>{
       if(res.data.success){
         this.setState({
           posts:res.data.existingPosts
@@ -25,14 +26,39 @@ componentDidMount(){
   }
   render(){
     return(
-      <div>
-        {this.state.posts.map(posts=>(
-  <div>
-    <p>{posts.topic}</p>
-    <p>{posts.description}</p>
-    <p>{posts.postCategory}</p>
-  </div>
-     ))}
+      <div className="container">
+        <p>All posts</p>
+        <table className="table">
+<thead> 
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">TOPIC</th>
+    <th scope="col">DESCRIPTION</th>
+    <th scope="col">POST CATEGORY</th>
+    <th scope="col">ACTION</th>
+  </tr>
+  </thead>
+  <tbody>
+    {this.state.posts.map((posts,index)=>(
+      <tr>
+        <th scope="row">{index+1}</th>
+        <td>{posts.topic}</td>
+        <td>{posts.description}</td>
+        <td>{posts.postCategory}</td>
+
+        <td>
+          <a className="btn btn-warning" href="#">
+            <i className="fas fa-edit"></i>&nbsp; Edit
+            </a>
+            &nbsp;
+            <a className="btn btn-danger" href="#">
+            <i className="fas fa-trash-alt"></i>&nbsp; Delete
+            </a>
+        </td>
+      </tr>
+    ))}
+    </tbody>  
+</table>   
       </div>
     )
   }

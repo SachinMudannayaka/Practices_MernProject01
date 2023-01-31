@@ -13,7 +13,7 @@ app.use(bodyParser.json());
 app.use(cors());
 app.use(postRoutes);
 
-const PORT=8025;
+const PORT=8026;
 const DB_URL ='mongodb+srv://sachinMudan:<password>@cluster0.imeuuuw.mongodb.net/student_db?retryWrites=true&w=majority';
 
 mongoose.connect(DB_URL,{
